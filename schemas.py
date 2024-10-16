@@ -87,7 +87,7 @@ class OcorrenciaBase(BaseModel):
     secaoMrj: str
     correspondencia: str
     patrimonioUrna: str
-    dataOcorrencia: str
+    dataOcorrencia: date
     horaOcorrencia: str
     tipoDeUrna: str
     modeloUrna: str
@@ -104,6 +104,7 @@ class OcorrenciaResponse(OcorrenciaBase):
 
     class Config:
         from_attributes = True
+
 
 
 from pydantic import BaseModel

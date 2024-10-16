@@ -50,14 +50,31 @@ def get_users(db: Session, skip: int = 0, limit: int = 10):
 
 def create_ocorrencia(db: Session, ocorrencia: OcorrenciaCreate):
     db_ocorrencia = Ocorrencia(
-        descricao=ocorrencia.descricao,
+        descricaoProblema=ocorrencia.descricaoProblema,
         problemas=json.dumps(ocorrencia.problemas),  # Serializa para JSON
-        local=ocorrencia.local
+        solucoes=json.dumps(ocorrencia.solucoes),  # Serializa as soluções para JSON
+        municipio=ocorrencia.municipio,
+        zona=ocorrencia.zona,
+        secaoMrj=ocorrencia.secaoMrj,
+        correspondencia=ocorrencia.correspondencia,
+        patrimonioUrna=ocorrencia.patrimonioUrna,
+        dataOcorrencia=ocorrencia.dataOcorrencia,
+        horaOcorrencia=ocorrencia.horaOcorrencia,
+        tipoDeUrna=ocorrencia.tipoDeUrna,
+        modeloUrna=ocorrencia.modeloUrna,
+        imagem=ocorrencia.imagem
     )
     db.add(db_ocorrencia)
     db.commit()
     db.refresh(db_ocorrencia)
+
+    # Desserializa problemas e solucoes para retorno correto
+    db_ocorrencia.problemas = json.loads(db_ocorrencia.problemas)
+    db_ocorrencia.solucoes = json.loads(db_ocorrencia.solucoes)
+
     return db_ocorrencia
+
+
 
 def get_ocorrencia(db: Session, ocorrencia_id: int):
     return db.query(Ocorrencia).filter(Ocorrencia.id == ocorrencia_id).first()
