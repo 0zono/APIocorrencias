@@ -2,8 +2,6 @@
 
 Este repositório contém uma aplicação backend utilizando FastAPI. O projeto faz uso de diversas bibliotecas para funcionalidades adicionais, como autenticação e manipulação de bancos de dados.
 
-## Passo 1: Configuração do Ambiente Virtual
-
 Antes de instalar as dependências do projeto, é recomendado criar um **ambiente virtual** para isolar as bibliotecas e garantir que elas não afetem outros projetos no seu sistema.
 
 ### Windows
